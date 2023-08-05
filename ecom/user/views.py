@@ -18,6 +18,7 @@ def UserSignup(request):
     context = {'form':form}
     return render(request,'usersignup.html',context)
 
+
 def UserLogin(request):
     if request.method =="POST":
         username = request.POST.get('username')
@@ -36,6 +37,7 @@ def UserLogin(request):
 @login_required(login_url='signup')
 def ConfirmLogout(request):
     return render(request,"logoutconfirm.html")
+
 @login_required(login_url='signup')
 def UserLogout(request):
     logout(request)

@@ -19,7 +19,7 @@ class SubCategory(models.Model):
     slug = models.SlugField()
 
     def __str__(self):
-        return '{}-{}'.format(self.name,self.category.name)
+        return '{}-{}'.format(self.name,self.category.name)   
     
 class ProductSeries(models.Model):
     name = models.CharField(max_length=200)
@@ -43,6 +43,7 @@ class Products(models.Model):
     qty = models.IntegerField()
     slug = models.SlugField()
     subcategory = models.ForeignKey(SubCategory,on_delete=models.CASCADE)
+    category =models.ForeignKey(Category,on_delete=models.CASCADE)
     productseries = models.ForeignKey(ProductSeries,on_delete=models.CASCADE)
 
 
