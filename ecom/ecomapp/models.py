@@ -19,14 +19,28 @@ class SubCategory(models.Model):
     slug = models.SlugField()
 
     def __str__(self):
-        return '{}-{}'.format(self.name,self.category.name)   
-    
+        return '{}-{}'.format(self.name,self.category.name)
+
+class ProductSegment(models.Model):
+    name1 = models.CharField(max_length=200)
+    name2 = models.CharField(max_length=200)
+    slug = models.SlugField()
+    subcategory = models.ForeignKey(SubCategory,on_delete=models.CASCADE)
+    category =models.ForeignKey(Category,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{}-{}-{}'.format(self.name1,self.subcategory.name,self.category.name)
+
 class ProductSeries(models.Model):
     name = models.CharField(max_length=200)
     image = models.ImageField(upload_to='Productseries_img')
+    image1 = models.ImageField(upload_to='Productseries_img',null=True,blank=True)
+    image2 = models.ImageField(upload_to='Productseries_img',null=True,blank=True)
+    image3 = models.ImageField(upload_to='Productseries_img',null=True,blank=True)
     description = models.CharField(max_length=500,null=True,blank=True)
     slug = models.SlugField()
     subcategory = models.ForeignKey(SubCategory,on_delete=models.CASCADE)
+    
 
     def __str__(self):
         return self.name
@@ -45,6 +59,7 @@ class Products(models.Model):
     subcategory = models.ForeignKey(SubCategory,on_delete=models.CASCADE)
     category =models.ForeignKey(Category,on_delete=models.CASCADE)
     productseries = models.ForeignKey(ProductSeries,on_delete=models.CASCADE)
+    productsegment = models.ForeignKey(ProductSegment,on_delete=models.CASCADE)
 
 
     def __str__(self):
