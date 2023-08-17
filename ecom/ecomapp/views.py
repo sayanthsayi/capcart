@@ -61,7 +61,8 @@ def ProductView(request,slug):
         disc_price = value
 
     sub_category=SubCategory.objects.filter(slug=slug)
-    prod_series = ProductSeries.objects.filter(subcategory__slug=slug)
+    # category_series = ProductSeries.objects.filter(subcategory__slug=slug)
+    prod_series = ProductSeries.objects.filter(products__slug=slug)
 
 
 

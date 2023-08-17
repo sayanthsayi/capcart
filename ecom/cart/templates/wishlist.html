@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Wishlist{% endblock title %}
+{% block content %}
+
+{% if messages %}
+{% for msg in messages %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>{{msg}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center mt-5">Wishlist</h1>
+              {% if wishlist %}
+                <div class="col-8 d-block w-100 mb-1">
+                    <div class="row container">
+                        
+                        {% for items in wishlist %}
+                        <div class="col-sm-4">
+                            <a href="{% url 'wishlistdelete' items.pk %}">
+                                <i class="fa-regular fa-trash-can fa-xl"></i>                        </a>
+                            <a href="{% url 'ProductView' items.product.slug %}" style="text-decoration: none; color: black;">
+                                <div class="card" style="width: 18rem; border: none;">
+                                    <img src="{{items.product.image.url}}" class="card-img-top d-block w-100 " alt="...">
+                                    <div class="card-body">
+                                    <h5 class="card-title">{{items.product.name}}</h5>
+                                    <p class="card-text text-success bg-light" > Rs.{{items.product.org_price}}/
+                                        <small class="fw-light "><strike class="text-danger">{{items.product.disc_price}}</strike></small>
+                                    </p>
+                                    </div>
+                                </div>
+                            </a>
+                            </div>                   
+                        {% endfor %}
+                    </div>
+                </div>
+                {% else %}
+                    <div class="text-center ">
+                        <img src="{% static 'images/emptywishlist.png' %}" alt="" class="d-block w-100">
+                    </div>
+            {% endif %} 
+        </div>
+    </div>
+    
+</section>
+{% endblock content %}
