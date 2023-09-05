@@ -8,4 +8,7 @@ urlpatterns = [
     path('AddToishlist/',views.Prod_Wishlist,name='addtowishlist'),
     path('wishlist/',views.WishlistView,name='wishlist'),
     path('Wishlist-delete/<str:pk>',views.WishlistDelete,name='wishlistdelete'),
+    path('Checkout/',views.Checkout,name='Checkout'),
+    path('Place-order/',views.Place_Order,name='placeorder'),
+    path('Orders/',views.User_Orders,name='orders'),
 ]

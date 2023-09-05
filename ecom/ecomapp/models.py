@@ -15,7 +15,7 @@ class Category(models.Model):
 class SubCategory(models.Model):
     name = models.CharField(max_length=200)
     image = models.ImageField(upload_to='subcat_image')
-    category =models.ForeignKey(Category,on_delete=models.CASCADE)
+    category = models.ForeignKey(Category,on_delete=models.CASCADE)
     slug = models.SlugField()
 
     def __str__(self):

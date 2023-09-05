@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Wishlist{% endblock title %}
+{% block content %}
+<style>
+    #prod{
+        position: sticky;
+        top: 70px;
+    }
+</style>
+<section>
+  <div class="container">
+  <div class="py-5 text-center">
+    
+    <h2>Checkout form</h2>
+  </div>
+
+  <div class="row" id="prod">
+    <div class="col-md-4 order-md-2 mb-4" >
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Your cart</span>
+        <span class="badge badge-secondary badge-pill">3</span>
+      </h4>
+      <ul class="list-group mb-3">
+          {% if cart_checkout %}
+          {% for items in cart_checkout %}
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div class="">
+                    <h6 class="my-0">{{items.product.name}}</h6>
+                    <span class="text-muted">Rs.{{items.product.disc_price}}</span>
+                </div>
+            </li>
+                {% endfor %}
+            {% endif %}
+        <li class="list-group-item d-flex justify-content-between bg-light">
+          <div class="text-success">
+            <h6 class="my-0">Promo code</h6>
+          </div>
+          <span class="text-success">-Rs500</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Total (INR)</span>
+
+          <strong>Rs.{{famount}}</strong>
+        </li>
+      </ul>
+
+      <form class="card p-2">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Promo code">
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-secondary">Redeem</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Billing address</h4>
+      <form  method="POST" action="{% url 'placeorder' %}" >
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">First name</label>
+            <input type="text" class="form-control" name="firstName" value='{{default_profile.First_name}}' required>
+            <div class="invalid-feedback">
+              Valid first name is required.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Last name</label>
+            <input type="text" class="form-control" value='{{default_profile.Second_name}}' name="lastName" placeholder=""  required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email">Email <span class="text-muted"></span></label>
+          <input type="email" class="form-control" name="email" placeholder="you@example.com" value="{{default_profile.email}}" >
+        </div> 
+
+        <div class="mb-3">
+          <label for="address">Address</label>
+          <input type="text" class="form-control" name="address" placeholder="Address" value="{{default_profile.address}}" required>
+          <div class="invalid-feedback">
+            Please enter your shipping address.
+          </div>
+        </div>  
+
+        <div class="row">
+          <div class="col-md-5 mb-3">
+            <label for="country">Country</label>
+            <select class="custom-select d-block w-100"  name="country" required >
+              {% if default_profile.country %}
+              <option value="{{default_profile.country}}">{{default_profile.country}}</option>
+              {% else %}
+              <option >Choose..</option>
+              {% endif %}
+              <option>India</option>
+            </select>
+
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="state">State</label>
+            <select class="custom-select d-block w-100"  name="state" value="{{default_profile.state}}" required>
+              {% if default_profile.state %}
+              <option value="{{default_profile.state}}">{{default_profile.state}}</option>
+              {% else %}
+              <option >Choose..</option>
+              {% endif %}
+              <option>Kerala</option>
+              <option>Tamilnadu</option>
+              <option>Karnataka</option>
+              <option>Goa</option>
+              <option>Maharashtra</option>
+            </select>
+  
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="state">District</label>
+            <input type="text" class="form-control"  name="district" placeholder="" value="{{default_profile.district}}" required>
+  
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="zip">Zip</label>
+            <input type="text" class="form-control"  name="zip" placeholder="" value="{{default_profile.pincode}}" required>
+            <div class="invalid-feedback">
+              Zip code required.
+            </div>
+          </div>
+        </div>
+        <hr class="mb-4">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="same-address">
+          <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="save-info">
+          <label class="custom-control-label" for="save-info">Save this information for next time</label>
+        </div>
+        <hr class="mb-4">
+        <input type="submit" value="plceorder" class="btn btn-primary">
+      </form>
+    </div>
+  </div>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small"
+    <p class="mb-1">&copy; 2017-2024 Capkart</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="#">Terms</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+  </footer>
+</div>
+</section>
+{% endblock content %}

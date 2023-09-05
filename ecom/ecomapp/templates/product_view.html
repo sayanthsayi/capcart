@@ -42,7 +42,7 @@
                         <div class="col-sm-6 ps-5" >
                             <div class="text-center ms-5  sticky-top">
                                 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                                    <div class="carousel-inner">
+                                    <div class="carousel-inner featured-image-container ipsGrid_span5 gs_reveal gs_reveal_fromRight">
                                       <div class="carousel-item active">
                                         <img src="{{items.image.url}}" class="d-block w-75 mt-5 " alt=""  style="mix-blend-mode: multiply;z-index: 0;">
                                     </div>
@@ -82,6 +82,7 @@
                             <div>
                                 <h5 style="font-family: 'Barlow', sans-serif;">{{items.description}}</h5>
                             </div>
+                            {% if not items.qty == 0 %}
                             <div class="text-start mt-5">
                                 {% csrf_token %}
                                 <input type="hidden" value={{items.id}} class="prod_id">
@@ -89,8 +90,21 @@
                                 <input type="number" name="" class="prod_qty text-center" readonly value="1" style="width: 50px;"/>
                                 <button type="button" class="btn decrement"><i class="fa-solid fa-minus"></i></button>
                             </div>
+                            {% endif %}
+                           <div class="pt-3">
+                            {% if items.qty <= 5 and items.qty >= 1 %}
+                            <h5 class="text-danger">hurry up only {{items.qty}} left!!!</h5>
+                            
+                            {% elif items.qty > 0 %}
+                            <h5 class="text-success">Stock</h5>
+                            {% endif %}
+                           </div>
                             <div class="text-start mt-5 row ">
+                                {% if items.qty == 0  %}
+                                <input type="button" value="Out Of Stock" class="btn btn-danger">
+                                {% else %}
                                 <input type="button" value="Add To Cart" class="cart_btn">
+                                {% endif %}
                                 <input type="button" value="Wishlist" class="wishlist_btn mt-3" />
                             </div>
                             

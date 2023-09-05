@@ -12,7 +12,10 @@ def UserSignup(request):
     if request.method =="POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save(commit=False)
+            user.username = user.username.capitalize()
+            user.save()
+            login(request,user)
             messages.success(request,'Signup Successfully')
             return redirect("home")
     context = {'form':form}
