@@ -160,7 +160,6 @@ def Place_Order(request):
 def User_Orders(request):
     orders = Orders.objects.filter(user=request.user)
     
-   
 
     context = {'orders':orders}
     return render(request,'orders.html',context)

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        {% if products %}
+        <h1 class="pt-3 fw-light">Search Result</h1>
+        <hr>
+        {% for items in products %}
+                <div class="col-md-3 mt-4">
+                    <div class="card d-block w-100 mb-1" style="width: 16rem;">
+                        <a href="{% url "ProductView" items.slug %}" class="btn">
+                            <img src="{{items.image.url}}" class="w-100" />
+                            <div class="card-body">
+                                <h5 class="card-title">{{items.name}}</h5>
+                                <div class="fw-bold text-danger">Rs.{{items.disc_price}}/-
+                                    <small class="fw-light text-decoration-line-through">{{items.org_price}}</small>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>   
+            {% endfor %}
+        {% else %}
+        <div>
+            <div class="" style="height:auto;">
+                <img src="{% static 'images/no_result.png' %}" alt="" class="d-block w-75 mx-auto " >
+            </div>
+        </div>
+        {% endif %}   
+        </div>
+    </div>
+</div>
+{% endblock content %}

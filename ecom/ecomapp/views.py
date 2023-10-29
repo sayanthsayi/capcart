@@ -34,7 +34,6 @@ def Product_Series_Show(request,slug):
     main_category = Category.objects.all()
     # product_series = ProductSeries.objects.filter(slug=slug)
     product = Products.objects.filter(productseries__slug=slug)
-
     context = {'main_category':main_category,'product':product}
     return render(request,"Product_series_show.html",context)
 
@@ -63,7 +62,18 @@ def ProductView(request,slug):
     # category_series = ProductSeries.objects.filter(subcategory__slug=slug)
     prod_series = ProductSeries.objects.filter(products__slug=slug)
 
-
-
     context ={'main_category':main_category,'product':product,'off_price':off_price,'disc_price':disc_price,'prod_series':prod_series}
     return render(request,'product_view.html',context)
+
+def SearchFunc(request):
+    main_category = Category.objects.all()
+    if request.method == 'GET':
+        query = request.GET.get('query')
+        if query:
+            products = Products.objects.filter(name__contains = query)
+            context={'products':products,'main_category':main_category}
+            return render(request,'Search.html',context)
+        else:
+            print("no information to show")
+            return render(request,'Search.html',{})
+ 

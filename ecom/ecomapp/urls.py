@@ -8,4 +8,5 @@ urlpatterns = [
     path('Product-Series-Show/<str:slug>',views.Product_Series_Show,name="ProductSeriesShow"),
     path('SegmentView/<str:slug>',views.SegmentView,name="SegmentView"),
     path('ProductView/<str:slug>',views.ProductView,name="ProductView"),
-]
+    path('Search/',views.SearchFunc,name="Search"),
+    ]

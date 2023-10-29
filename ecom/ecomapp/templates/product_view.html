@@ -20,7 +20,7 @@
             {% if prod_series %}
                 {% for items in prod_series %}
                     <a style="text-decoration: none;" href="{% url 'ProductSeriesShow' items.slug %}">
-                        <div class="card" style="width: 18rem; background-color: transparent; color: rgb(0, 0, 0); border: none; border-radius: 100px 100px 100px 100px;">
+                        <div class="card" style="width:10rem; background-color: transparent; color: rgb(0, 0, 0); border: none; border-radius: 100px 100px 100px 100px;">
                             <img src="{{items.image.url}}" class="card-img-top d-block w-100" alt="..." style=" border-radius: 100px 100px 100px 100px; box-shadow: 10px 10px 20px;">
                             <div class="card-body">
                               <h5 class="card-title text-center">{{items.name}}</h5>
@@ -39,21 +39,21 @@
             <div class="row bg-white rounded mt-5">
                 {% if product %}
                     {% for items in product %}
-                        <div class="col-sm-6 ps-5" >
-                            <div class="text-center ms-5  sticky-top">
+                        <div class="col-sm-6 " >
+                            <div class="text-center  sticky-top">
                                 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                                     <div class="carousel-inner featured-image-container ipsGrid_span5 gs_reveal gs_reveal_fromRight">
                                       <div class="carousel-item active">
-                                        <img src="{{items.image.url}}" class="d-block w-75 mt-5 " alt=""  style="mix-blend-mode: multiply;z-index: 0;">
+                                        <img src="{{items.image.url}}" class="d-block w-75  mt-5 mx-auto  " alt=""  style="mix-blend-mode: multiply;z-index: 0;">
                                     </div>
                                       <div class="carousel-item">
-                                        <img src="{{items.image2.url}}" class="d-block w-75 mt-5 " alt=""  style="mix-blend-mode: multiply;z-index: 0;">
+                                        <img src="{{items.image2.url}}" class="d-block w-75  mt-5 mx-auto " alt=""  style="mix-blend-mode: multiply;z-index: 0;">
                                     </div>
                                       <div class="carousel-item">
-                                        <img src="{{items.image3.url}}" class="d-block w-75 mt-5 " alt=""  style="mix-blend-mode: multiply;z-index: 0;">
+                                        <img src="{{items.image3.url}}" class="d-block w-75  mt-5 mx-auto " alt=""  style="mix-blend-mode: multiply;z-index: 0;">
                                     </div>
                                       <div class="carousel-item">
-                                        <img src="{{items.image4.url}}" class="d-block w-75 mt-5 " alt=""  style="mix-blend-mode: multiply;z-index: 0;">
+                                        <img src="{{items.image4.url}}" class="d-block w-75  mt-5 mx-auto " alt=""  style="mix-blend-mode: multiply;z-index: 0;">
                                     </div>
                                     </div>
                                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
