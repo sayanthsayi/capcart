@@ -39,6 +39,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 
     <title>Capkart | {% block title %}{% endblock title %}</title>
 
@@ -266,8 +267,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto me-start mb-2 mb-lg-0">
             
-            <form class="d-flex me-5" method="get" action="{% url "Search" %}">
+            <form class="d-flex me-5 mt-3" method="get" action="{% url "Search" %}" style="height: 40px;">
               <input class="form-control me-2 " type="text" name="query" id="Searchproduct" placeholder="Search" aria-label="Search">
+              <input type="submit" placeholder="Search" >
             </form>
             <li class="nav-item me-5">
               <a class="nav-link text-white" href="#">Kannur. 670561</a>
@@ -383,6 +385,10 @@
         
     {% block content %}
     {% endblock content %}
+
+    <a href="https://wa.me/+918882224445?text=I'm%20interested%20for%20chat" target="_blank" style="position: fixed; bottom: 10%; left: 90%; z-index: 99; ">
+      <img src="{% static "images/Whatsapplogo.png" %}" alt="whatsapp" width='60px'>
+    </a>
 
     
       <!-- Site footer -->

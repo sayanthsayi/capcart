@@ -28,6 +28,16 @@ class Wishlist(models.Model):
     class Meta:
         ordering = ['-created']
 
+STATUS_CHOICES = (
+    ('Accepted','Accepted'),
+    ('packed','packed'),
+    ('on the way','on the way'),
+    ('Delivered','Delivered'),
+    ('cancel','cancel'),
+    ('pending','pending'),
+
+)
+
 class Orders(models.Model):
     First_name = models.CharField(max_length=200)
     Second_name = models.CharField(max_length=100)
@@ -39,6 +49,7 @@ class Orders(models.Model):
     email = models.EmailField(null=True,blank=True)
     district = models.CharField(max_length=200,null=True,blank=True)
     created = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=50,choices=STATUS_CHOICES, default='pending' , null=True,blank=True)
 
     def __str__(self):
         return '{}-{}'.format(self.First_name,self.Second_name)

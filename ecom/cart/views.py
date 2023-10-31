@@ -5,6 +5,7 @@ from .models import Cart,Wishlist,Orders,Profile,OrderItems
 from django . contrib import messages
 # Create your views here.
 
+
 def AddToCart(request):
     if request.method == 'POST':
         if request.user.is_authenticated:
@@ -146,12 +147,9 @@ def Place_Order(request):
             avail_qty.qty = avail_qty.qty - items.quantity
             avail_qty.save()
 
-
-
-
         cart.delete()
         messages.success(request,'Order Placed Successfully...')
-        return redirect('home')
+        return redirect('ordersuccessfully')
     else:
         messages.error(request,'Something Went Wrong!')
         return redirect('home')
@@ -159,7 +157,7 @@ def Place_Order(request):
 
 def User_Orders(request):
     orders = Orders.objects.filter(user=request.user)
-    
 
     context = {'orders':orders}
     return render(request,'orders.html',context)
+

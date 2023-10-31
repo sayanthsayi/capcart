@@ -15,7 +15,7 @@
 <section>
     <div class="container">
         <div class="row">
-            <h1 class="text-center mt-5">Wishlist</h1>
+            <h1 class="text-center mt-5 fw-light">Wishlist</h1>
               {% if wishlist %}
                 <div class="col-8 d-block w-100 mb-1">
                     <div class="row container">
@@ -41,7 +41,7 @@
                 </div>
                 {% else %}
                     <div class="text-center ">
-                        <img src="{% static 'images/emptywishlist.png' %}" alt="" class="d-block w-100">
+                        <img src="{% static 'images/wishlistempty.gif' %}" alt="" class="d-block w-50 mx-auto">
                     </div>
             {% endif %} 
         </div>

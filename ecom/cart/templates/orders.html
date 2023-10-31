@@ -6,22 +6,18 @@
 <div class="container my-5">
     <div class="row">
         <h1 class="text-center">Orders</h1>
-        <h3>Welcome <span class="text-capitalise">{{request.user}}</span></h3>
-        <div class="col-sm-2 border-end">
-            <ul class="list-unstyled">
-                    <li class="d-grid"><a href="{% url 'orders' %}" class="btn btn-primary">Orders</a></li>
-            </ul>
-        </div>
-        <div class="col-sm-9 offset-sm-1">
+        {% comment %} <h3>Welcome <span class="text-capitalise">{{request.user}}</span></h3> {% endcomment %}
+        
+        <div class="col-sm-9 offset-sm-1 mx-auto mt-5">
             {% for items in orders %}
             <div class="row">
                 <div class="col-sm-2">
-                    <img src="{{items.product.image.url}}" class="img-fluid" height="100" width="100"/>
+                    <img src="{{items.image.url}}" class="img-fluid" height="100" width="100"/>
                 </div>
                 <div class="col-sm-7">
-                    <p>Product : {{items.Product.name}}</p>
-                    <p>Quantity : {{items.qty}}</p>
-                    <p>Price : {{items.total_cost}}</p>
+                    <p>Product : {{items.products.name}}</p>
+                    <p>Quantity : {{items.products.qty}}</p>
+                    <p>Price : {{items.products.price}}</p>
                 </div>
                 <div class="col-sm-3">
                     <p>Order Status : {{items.status}}</p>

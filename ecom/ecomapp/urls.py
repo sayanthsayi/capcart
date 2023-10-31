@@ -9,4 +9,5 @@ urlpatterns = [
     path('SegmentView/<str:slug>',views.SegmentView,name="SegmentView"),
     path('ProductView/<str:slug>',views.ProductView,name="ProductView"),
     path('Search/',views.SearchFunc,name="Search"),
+    path('OrderSuccess/',views.OrderSuccess,name='ordersuccessfully'),
     ]

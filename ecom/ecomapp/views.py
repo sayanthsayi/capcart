@@ -77,3 +77,5 @@ def SearchFunc(request):
             print("no information to show")
             return render(request,'Search.html',{})
  
+def OrderSuccess(request):
+    return render(request,'ordersuccess.html')
