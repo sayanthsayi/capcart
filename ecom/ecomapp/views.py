@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django .contrib.auth.decorators import login_required
 from .models import *
+from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 
 # Create your views here.
 @login_required(login_url='signup')
@@ -16,6 +17,16 @@ def Subcategory_show(request,slug):
     subcategory = SubCategory.objects.filter(category__slug=slug)
 
     products = Products.objects.filter(category__slug=slug)
+    page_number = request.GET.get("page")
+    paginator = Paginator(products,3)
+
+    try:
+        products = paginator.page(page_number)
+    except PageNotAnInteger :
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
     context = {'subcategory':subcategory,'main_category':main_category,'products':products}
     return render(request,'subcat_view.html',context)
 
@@ -49,6 +60,7 @@ def SegmentView(request,slug):
 def ProductView(request,slug):
     main_category = Category.objects.all()
     product = Products.objects.filter(slug=slug)
+    
 
     for p in product:
         value =100-(p.disc_price/p.org_price)*100
@@ -62,7 +74,7 @@ def ProductView(request,slug):
     # category_series = ProductSeries.objects.filter(subcategory__slug=slug)
     prod_series = ProductSeries.objects.filter(products__slug=slug)
 
-    context ={'main_category':main_category,'product':product,'off_price':off_price,'disc_price':disc_price,'prod_series':prod_series}
+    context ={'main_category':main_category,'product':product,'off_price':off_price,'disc_price':disc_price,'prod_series':prod_series,}
     return render(request,'product_view.html',context)
 
 def SearchFunc(request):
@@ -78,4 +90,7 @@ def SearchFunc(request):
             return render(request,'Search.html',{})
  
 def OrderSuccess(request):
-    return render(request,'ordersuccess.html')
+    main_category = Category.objects.all()
+
+    context={'main_category':main_category}
+    return render(request,'ordersuccess.html',context)

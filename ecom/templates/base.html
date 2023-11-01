@@ -1,6 +1,6 @@
 {% load static %}
 <!doctype html>
-<html lang="en" style="scroll-behavior: smooth;">
+<html lang="en" style="scroll-behavior: smooth;"  >
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -267,10 +267,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto me-start mb-2 mb-lg-0">
             
-            <form class="d-flex me-5 mt-3" method="get" action="{% url "Search" %}" style="height: 40px;">
+             <form class="d-flex me-5 mt-1" method="get" action="{% url "Search" %}" style="height: 40px;">
               <input class="form-control me-2 " type="text" name="query" id="Searchproduct" placeholder="Search" aria-label="Search">
-              <input type="submit" placeholder="Search" >
-            </form>
+            </form> 
+
             <li class="nav-item me-5">
               <a class="nav-link text-white" href="#">Kannur. 670561</a>
             </li>
@@ -281,7 +281,7 @@
     {% else %}
   {% endif %}
     <!-- navbar -->
-      <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="z-index: 100; background-color: #fff">
+      <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="z-index:99; background-color: #fff">
           <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}">
               <img src={% static 'images/cartlogo.png' %} class="" width="40px" alt="">Capkart
@@ -344,9 +344,31 @@
                 <li class="nav-item">
                   <a class="nav-link  ms-5 " href={% url 'cart' %} style="font-family: 'Barlow', sans-serif; font-size: 20px;" ><i class="fa-sharp fa-solid fa-cart-shopping" style="color: #212121;"></i></a>
                 </li>
+               
                 <li class="nav-item">
                   <a class="nav-link  ms-5 " href={% url 'wishlist' %} style="font-family: 'Barlow', sans-serif; font-size: 20px;" ><i class="fa-regular fa-heart" style="color: #ff0000;"></i></a>
                 </li>
+                <header>
+                  <div class="dropdown ms-5 mt-2">
+                    <a class="dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuAvatar"
+                      role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                      <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
+                        alt="Black and White Portrait of a Man" loading="lazy" />
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="#navbarDropdownMenuAvatar">
+                      <li>
+                        <a class="dropdown-item" href="#">My profile</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">Settings</a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">Logout</a>
+                      </li>
+                    </ul>
+                  </div>
+                </header>
+              </div>
             </div>
           </div>
         </nav>
@@ -386,9 +408,13 @@
     {% block content %}
     {% endblock content %}
 
-    <a href="https://wa.me/+918882224445?text=I'm%20interested%20for%20chat" target="_blank" style="position: fixed; bottom: 10%; left: 90%; z-index: 99; ">
-      <img src="{% static "images/Whatsapplogo.png" %}" alt="whatsapp" width='60px'>
-    </a>
+    <!-- whatsapp -->
+
+    <div class="container">
+      <a href="https://wa.me/+918882224445?text=I'm%20interested%20for%20chat" target="_blank" style="position: fixed; bottom: 10%; left: 90%; z-index: 99; ">
+        <img src="{% static "images/Whatsapplogo.png" %}" class="img-fluid" alt="whatsapp" width='60px'>
+      </a>
+    </div>
 
     
       <!-- Site footer -->

@@ -18,15 +18,15 @@
     <div class="bg-white p-5 ">
         <div>
             {% if prod_series %}
-                {% for items in prod_series %}
-                    <a style="text-decoration: none;" href="{% url 'ProductSeriesShow' items.slug %}">
-                        <div class="card" style="width:10rem; background-color: transparent; color: rgb(0, 0, 0); border: none; border-radius: 100px 100px 100px 100px;">
-                            <img src="{{items.image.url}}" class="card-img-top d-block w-100" alt="..." style=" border-radius: 100px 100px 100px 100px; box-shadow: 10px 10px 20px;">
+            {% for items in prod_series %}
+            <div class="card" style="width:10rem; background-color: transparent; color: rgb(0, 0, 0); border: none; border-radius: 100px 100px 100px 100px;">
+                            <a style="text-decoration: none;" href="{% url 'ProductSeriesShow' items.slug %}">
+                            <img src="{{items.image.url}}" class="card-img-top d-block w-100" alt="..." style=" border-radius: 100px 100px 100px 100px;">
                             <div class="card-body">
-                              <h5 class="card-title text-center">{{items.name}}</h5>
+                              <h5 class="card-title text-center text-dark">{{items.name}}</h5>
                             </div>
+                        </a>
                           </div>
-                    </a>
                 {% endfor %}
             {% endif %}   
             {% if category_series %}
@@ -103,10 +103,11 @@
                                 {% if items.qty == 0  %}
                                 <input type="button" value="Out Of Stock" class="btn btn-danger">
                                 {% else %}
-                                <input type="button" value="Add To Cart" class="cart_btn">
+                                <input type="button" value="Add To Cart" class="cart_btn btn btn-outline-dark" >
                                 {% endif %}
-                                <input type="button" value="Wishlist" class="wishlist_btn mt-3" />
+                                <input type="button" value="Wishlist" class="wishlist_btn mt-3 btn btn-outline-danger" data-mdb-ripple-color="light" />
                             </div>
+
                             
                         </div>
                         <div style="height: 10vh;">
